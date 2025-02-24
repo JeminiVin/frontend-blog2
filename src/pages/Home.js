@@ -30,7 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/blog/")
+      .get(`${API_BASE_URL}/api/blog/`)
       .then((response) => {
         console.log("API Response:", response.data);
         setBlogs(response.data);
@@ -41,7 +41,7 @@ const Home = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/blog/${id}`, {
+      await axios.delete(`${API_BASE_URL}api/blog/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBlogs(blogs.filter((blog) => blog._id !== id));
